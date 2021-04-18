@@ -4,8 +4,6 @@ This project simulates the spread of COVID-19 in a controlled set of population 
 
 ![Screenshot](./resources/images/screenshot.png)
 
-Work in progress!
-
 # Docs
 
 To be updated soon
