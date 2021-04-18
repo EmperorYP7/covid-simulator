@@ -35,6 +35,9 @@ class Virus():
         self.num_currently_infected = 0
         self.num_recovered = 0
         self.num_deaths = 0
+        if params["population"] < 0:
+            raise ValueError("population cannot be negative!")
+        self.population = params["population"]
         if params["r0"] < 0:
             raise ValueError("r0 cannot be negative!")
         self.r0 = params["r0"]
@@ -68,7 +71,6 @@ class Virus():
         self.initial_population()
 
     def initial_population(self):
-        population = 10000
         self.num_currently_infected = 1
         self.total_num_infected = 1
         indices = np.arange(0, population) + 0.5
@@ -82,12 +84,12 @@ class Virus():
 
     def spread_virus(self, i):
         self.exposed_before = self.exposed_after
-        if self.day % self.serial_interval == 0 and self.exposed_before < 10000:
+        if self.day % self.serial_interval == 0 and self.exposed_before < self.population:
             self.num_new_infected = round(self.r0 * self.total_num_infected)
             self.exposed_after += round(self.num_new_infected * 1.1)
-            if self.exposed_after > 10000:
-                self.num_new_infected = round((10000 - self.exposed_before) * 0.9)
-                self.exposed_after = 10000
+            if self.exposed_after > self.population:
+                self.num_new_infected = round((self.population - self.exposed_before) * 0.9)
+                self.exposed_after = self.population
             self.num_currently_infected += self.num_new_infected
             self.total_num_infected += self.num_new_infected
             self.new_infected_indices = list(

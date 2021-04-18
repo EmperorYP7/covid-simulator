@@ -12,5 +12,6 @@ COVID19_PARAMS = {
     "severe_recovery": (21, 42),
     "severe_death": (14, 56),
     "fatality_rate": 0.034,
-    "serial_interval": 7
+    "serial_interval": 7,
+    "population": 10000
 }
