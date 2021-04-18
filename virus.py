@@ -73,9 +73,9 @@ class Virus():
     def initial_population(self):
         self.num_currently_infected = 1
         self.total_num_infected = 1
-        indices = np.arange(0, population) + 0.5
+        indices = np.arange(0, self.population) + 0.5
         self.thetas = np.pi * (1 + 5**0.5) * indices
-        self.rs = np.sqrt(indices / population)
+        self.rs = np.sqrt(indices / self.population)
         self.plot = self.axes.scatter(self.thetas, self.rs, s=5, color=GREY)
         # patient zero
         self.axes.scatter(self.thetas[0], self.rs[0], s=5, color=RED)
